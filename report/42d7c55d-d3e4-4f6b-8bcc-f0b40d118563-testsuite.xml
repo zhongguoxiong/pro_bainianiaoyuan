@@ -1,0 +1,89 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1569703163024" stop="1569703212359">
+  <name>test_business_home</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1569703163024" status="failed" stop="1569703212359">
+      <name>TestHome.test_login_success</name>
+      <failure>
+        <message>KeyError: 'status'</message>
+        <stack-trace>self = &lt;test_business_home.TestHome object at 0x0000000004582668&gt;
+
+    def test_login_success(self):
+        desired_caps = dict()
+        desired_caps["platformName"] = "Android"
+        desired_caps["platformVersion"] = "5.1"
+        desired_caps["noReset"] = True
+        # desired_caps['automationName'] = 'Uiautomator2'
+    
+        desired_caps["deviceName"] = "192.168.138.103:5555"  # 真机测试的时候必须写
+        desired_caps["appPackage"] = "com.yunmall.lc"
+        desired_caps["appActivity"] = "com.yunmall.ymctoc.ui.activity.MainActivity"
+        desired_caps["unicodeKeyboard"] = True  # 表示开启unicode键盘
+        desired_caps["resetKeyboard"] = True  # 重置当前键盘
+    
+        # 3 建立连接 获取driver对象
+        driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+    
+        ele_me = (By.ID, "com.yunmall.lc:id/tab_me")
+&gt;       obj_me = WebDriverWait(driver, 5000, 0.5).until(lambda x: x.find_element(*ele_me))
+
+test_business_home.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+c:\python\python36\lib\site-packages\selenium\webdriver\support\wait.py:71: in until
+    value = method(self._driver)
+test_business_home.py:27: in &lt;lambda&gt;
+    obj_me = WebDriverWait(driver, 5000, 0.5).until(lambda x: x.find_element(*ele_me))
+c:\python\python36\lib\site-packages\appium\webdriver\webdriver.py:222: in find_element
+    'value': value})['value']
+c:\python\python36\lib\site-packages\selenium\webdriver\remote\webdriver.py:233: in execute
+    self.error_handler.check_response(response)
+c:\python\python36\lib\site-packages\appium\webdriver\errorhandler.py:24: in check_response
+    super(MobileErrorHandler, self).check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;appium.webdriver.errorhandler.MobileErrorHandler object at 0x0000000004582780&gt;
+response = {'status': 404, 'value': '{"value":{"error":"no such element","message":"An element could not be located on the page u...\node_modules\\\\appium\\\\node_modules\\\\babel-runtime\\\\regenerator\\\\runtime.js:136:37)\\n    at &lt;anonymous&gt;"}}'}
+
+    def check_response(self, response):
+        """
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        """
+        status = response.get('status', None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+    
+        value = None
+        message = response.get("message", "")
+        screen = response.get("screen", "")
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get('value', None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    status = value.get('error', None)
+                    if status is None:
+&gt;                       status = value["status"]
+E                       KeyError: 'status'
+
+c:\python\python36\lib\site-packages\selenium\webdriver\remote\errorhandler.py:106: KeyError</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="4520-MainThread"/>
+        <label name="host" value="Hasee-PC"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>
